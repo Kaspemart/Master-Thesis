@@ -52,6 +52,7 @@ REFERENCE:
 --------------------------------------------------------------------------------------------------------------------------------------
 """
 
+
 # IMPORTS:
 import numpy as np
 # ------------------------------------------------------------------------------------------------------------------------------------
@@ -61,8 +62,8 @@ class BasicSVModel:
     """
     Canonical discrete-time stochastic volatility model (Kim, Shephard & Chib 1998).
     
-    This class implements the standard discrete-time SV model used throughout the
-    econometrics and financial modeling literature. The model features:
+    This class implements the standard discrete-time SV model used throughout the econometrics and financial modeling literature.
+    The model features:
     - An AR(1) process for log-volatility (latent state)
     - Exponential link function connecting volatility to returns
     - Two parameters to estimate: persistence (φ) and vol-of-vol (σ_v)
@@ -72,14 +73,14 @@ class BasicSVModel:
     - Heavy tails in the return distribution
     - Time-varying conditional variance
     
-    This is the baseline model for the thesis because it:
-    1. Has latent volatility → creates the parameter estimation challenge
-    2. Is well-studied → extensive literature for comparison
-    3. Has minimal parameters → reduces complexity risk
-    4. Is computationally tractable for both classical and NN methods
+    This is the baseline model for the Master thesis because it:
+    - 1. Has latent volatility → creates the parameter estimation challenge
+    - 2. Is well-studied → extensive literature for comparison
+    - 3. Has minimal parameters → reduces complexity risk
+    - 4. Is computationally tractable for both classical and NN methods
     
-    Parameters
-    ----------
+    PARAMETERS:
+    ------------------------------------------------------------------------------------------------------------------------------------
     phi : float, default=0.9
         Persistence parameter controlling volatility clustering.
         Must be in (0, 1) for stationarity.
@@ -91,15 +92,15 @@ class BasicSVModel:
         Must be positive.
         Typical range: 0.1 to 0.5.
     
-    Attributes
-    ----------
+    ATTRIBUTES:
+    ------------------------------------------------------------------------------------------------------------------------------------
     phi : float
         The persistence parameter
     sigma_v : float
         The volatility of volatility parameter
     
-    Examples
-    --------
+    EXAMPLES:
+    ------------------------------------------------------------------------------------------------------------------------------------
     >>> # Create model with high persistence
     >>> model = BasicSVModel(phi=0.95, sigma_v=0.15)
     >>> 
@@ -112,8 +113,8 @@ class BasicSVModel:
     >>> plt.title("Simulated Returns with Stochastic Volatility")
     >>> plt.show()
     
-    Notes
-    -----
+    NOTES:
+    ------------------------------------------------------------------------------------------------------------------------------------
     The model equations are:
         h_t = φ * h_{t-1} + σ_v * η_t,  η_t ~ N(0,1)  (volatility evolution)
         r_t = exp(h_t/2) * ε_t,          ε_t ~ N(0,1)  (return generation)
@@ -121,30 +122,31 @@ class BasicSVModel:
     where h_t is the latent log-volatility and r_t is the observed return.
     The exponential transformation ensures volatility is always positive.
     
-    References
-    ----------
+    REFERENCES:
+    ------------------------------------------------------------------------------------------------------------------------------------
     Kim, S., Shephard, N., & Chib, S. (1998). Stochastic volatility: likelihood
     inference and comparison with ARCH models. The Review of Economic Studies,
     65(3), 361-393.
     """
     
     def __init__(self, phi: float = 0.9, sigma_v: float = 0.2):
-        """Initialize the SV model with given parameters."""
+        """This method initializes the SV model with given parameters."""
         self.phi = phi
         self.sigma_v = sigma_v
         
-        # Validate parameters
+        # Validating the parameters
         if not 0 < phi < 1:
             raise ValueError(f"phi must be in (0, 1), got {phi}")
         if sigma_v <= 0:
             raise ValueError(f"sigma_v must be positive, got {sigma_v}")
     
+
     def simulate(self, T: int = 252, h0: float = 0.0, seed: int | None = None) -> tuple[np.ndarray, np.ndarray]:
         """
-        Simulate returns and log-volatility trajectories from the SV model.
+        This method simulates returns and log-volatility trajectories from the SV model.
         
-        This method generates synthetic data by simulating both the latent log-volatility
-        process and the observed returns. The simulation follows the model equations:
+        This method generates synthetic data by simulating both the latent log-volatility process and the observed returns.
+        The simulation follows the model equations:
         
             h_t = φ * h_{t-1} + σ_v * η_t    (volatility evolution, latent)
             r_t = exp(h_t/2) * ε_t            (return generation, observed)
@@ -159,8 +161,8 @@ class BasicSVModel:
         3. Validate model implementation
         4. Create visualizations for exploratory analysis
         
-        Parameters
-        ----------
+        PARAMETERS:
+        ------------------------------------------------------------------------------------------------------------------------------------
         T : int, default=252
             Number of time steps to simulate.
             Default is 252 (one trading year of daily data).
@@ -177,8 +179,8 @@ class BasicSVModel:
             If None, results will vary each time.
             Set to a fixed integer (e.g., 42) for reproducible experiments.
         
-        Returns
-        -------
+        RETURNS:
+        ------------------------------------------------------------------------------------------------------------------------------------
         returns : np.ndarray
             Simulated returns of shape (T,).
             These are the **observed** data that would be available in practice.
@@ -190,8 +192,8 @@ class BasicSVModel:
             Useful for analysis and debugging but not available when estimating
             parameters from real data.
         
-        Examples
-        --------
+        EXAMPLES:
+        ------------------------------------------------------------------------------------------------------------------------------------
         >>> # Basic simulation
         >>> model = BasicSVModel(phi=0.9, sigma_v=0.2)
         >>> returns, log_vol = model.simulate(T=252, seed=42)
@@ -218,28 +220,29 @@ class BasicSVModel:
         ...     r, h = model.simulate(T=500, seed=phi*100)
         ...     sequences.append((r, h, phi))
         
-        Notes
-        -----
+        NOTES:
+        ------------------------------------------------------------------------------------------------------------------------------------
         - The first return r[0] is generated using the initial volatility h[0] = h0
         - Innovations η_t and ε_t are independent standard normals
         - The exponential transformation ensures positive volatility
         - For stationary behavior, ensure |φ| < 1 (enforced in __init__)
         - Typical autocorrelation in returns^2 will be visible due to volatility clustering
         """
+        # Setting the random seed for reproducibility
         if seed is not None:
             np.random.seed(seed)
         
-        # Initialize arrays
+        # Initializing the arrays for the log-volatility and returns
         h = np.zeros(T)  # log-volatility (latent)
         r = np.zeros(T)  # returns (observed)
         
-        # Set initial log-volatility
+        # Setting the initial log-volatility
         h[0] = h0
         
-        # Simulate first return (no previous volatility)
+        # Simulating the first return (no previous volatility)
         r[0] = np.exp(h[0] / 2) * np.random.randn()
         
-        # Simulate remaining time steps
+        # Simulating the remaining time steps
         for t in range(1, T):
             # Volatility evolution: h_t = φ * h_{t-1} + σ_v * η_t
             h[t] = self.phi * h[t-1] + self.sigma_v * np.random.randn()
@@ -249,7 +252,8 @@ class BasicSVModel:
         
         return r, h
     
+
     def __repr__(self) -> str:
-        """String representation of the model."""
+        """This method returns a string representation of the model."""
         return f"BasicSVModel(phi={self.phi:.3f}, sigma_v={self.sigma_v:.3f})"
 
