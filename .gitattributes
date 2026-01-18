@@ -1,0 +1,66 @@
+
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Source code
+*.py     text diff=python
+*.py3    text diff=python
+*.pyw    text diff=python
+*.ipynb  text
+*.js     text
+*.ts     text
+*.css    text diff=css
+*.html   text diff=html
+*.htm    text diff=html
+*.json   text
+*.yml    text
+*.yaml   text
+*.xml    text
+*.sql    text
+
+# Documentation
+*.md       text diff=markdown
+*.txt      text
+*.rst      text
+*.pdf      binary
+*.doc      binary
+*.docx     binary
+
+# Graphics
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.ico      binary
+*.svg      text
+
+# Scripts
+*.bash     text eol=lf
+*.sh       text eol=lf
+*.zsh      text eol=lf
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
+*.ps1      text eol=crlf
+
+# Configuration
+*.conf     text
+*.config   text
+*.toml     text
+*.ini      text
+*.lock     text
+*.env      text
+
+# Python specific
+requirements.txt text
+Pipfile         text
+Pipfile.lock    text
+pyproject.toml  text
+
+# Git specific
+.gitattributes  text
+.gitignore      text
+.gitconfig      text
+
+# Docker
+Dockerfile      text
+*.dockerignore  text

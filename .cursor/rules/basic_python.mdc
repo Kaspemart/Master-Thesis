@@ -1,0 +1,29 @@
+----
+globs: src/**/*.py,src/**/*.qmd
+alwaysApply: false
+----
+# Python Coding Standards
+
+Apply these standards to all Python code in this repository:
+
+- **Python Version:** Use Python >= 3.12.
+- **Type Annotations:** Use strict typing everywhere. Annotate all function arguments, return types, and class attributes.
+  - Use new style type hints: `list`, `tuple`, `dict`, etc. (e.g., `list[int]`), and `|` for unions (e.g., `int | None`).
+- **Type Checking:** Enable strict type checking (e.g., `mypy --strict`, `typeCheckingMode: "strict"` for `basedpyright`).
+- **Data Validation:** Use Pydantic for data validation and dataclass/type-dict-like structures.
+- **Testing:** Cover important code with tests.
+  - Prefer `pytest`, but `unittest` is also supported.
+  - Place test files in a `tests` directory, named as `test_*.py`.
+- **Formatting & Linting:**
+  - Follow PEP 8 for code formatting.
+- **Documentation:**
+  - Write Google style docstrings for all public modules, classes, and functions.
+  - Include an "Args:" section for arguments.
+  - Document all function arguments and return types.
+- **Error Handling:** Use exceptions for error handling; catch only specific exceptions.
+- **Logging:** Use the standard `logging` library with module loggers. Do not use `print()` for logging or debugging in production.
+- **Dependencies:** Pin dependencies in `pyproject.toml` (prefer `uv`).
+- **Secrets:** Never commit secrets, passwords, or API keys. Use environment variables or secret management tools.
+- NEVER USE POETRY UNLESS ASKED FOR IT. INTERACT ONLY WITH FILES IN `src` DIRECTORY UNLESS NECESSARY OR ASKED FOR! DO NOT CHANGE FILES WHERE THE CHANGE IS NOT NECESSARY.
+
+
