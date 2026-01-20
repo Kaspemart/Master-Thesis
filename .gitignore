@@ -166,6 +166,9 @@ rsconnect/
 srcPy/*.tsv
 srcPy/*.zip
 
+# Generated synthetic data (too large for GitHub, can be regenerated)
+data/synthetic/**/*.npz
+
 eggs/
 *.egg-info/
 *.egg
