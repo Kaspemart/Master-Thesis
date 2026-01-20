@@ -383,7 +383,7 @@ class BasicSVDataGenerator:
         filepath.parent.mkdir(parents=True, exist_ok=True)
         
         logger.info(f"Saving dataset to {filepath}...")
-        np.savez_compressed(filepath, **data)
+        np.savez_compressed(filepath, **data)  # type: ignore[arg-type]
         
         # Calculating file size
         size_mb = filepath.stat().st_size / 1024 / 1024
