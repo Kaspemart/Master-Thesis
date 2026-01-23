@@ -338,10 +338,14 @@ Copy this to `PROGRESS_LOG.md` each week:
 - ✅ Basic SV model (validated and working)
 - ✅ Synthetic data generator
 - ✅ Full training dataset (70k sequences, 259 MB)
+- ✅ LSTM parameter estimator (architecture + training pipeline)
+- ✅ Evaluation framework
 
 **Ready for:**
-- Neural network training
-- Parameter estimation experiments
+- Full-scale training on 50k sequences
+- Hyperparameter tuning
+- Classical benchmark implementation
+- Comparison and analysis
 
 ---
 

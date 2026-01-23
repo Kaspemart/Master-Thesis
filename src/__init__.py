@@ -11,6 +11,18 @@ __author__ = "Martin Kasperlik"
 # Package-level imports for convenience
 # Importing as modules are implemented
 from src.models.sv_basic import BasicSVModel
-# from src.neural_networks.lstm_estimator import LSTMEstimator  # TODO: implement
-# Add more as implemented
+from src.neural_networks.lstm_estimator import (
+    LSTMParameterEstimator,
+    SVParameterDataset,
+    train_model,  # type: ignore[assignment]
+    evaluate_model  # type: ignore[assignment]
+)
+
+__all__ = [
+    "BasicSVModel",
+    "LSTMParameterEstimator",
+    "SVParameterDataset",
+    "train_model",
+    "evaluate_model",
+]
 
