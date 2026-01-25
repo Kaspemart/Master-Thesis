@@ -1,5 +1,4 @@
 # IMPORTS:
-import numpy as np
 import time
 from src.models.sv_basic import BasicSVModel
 from src.classical.mle import estimate_parameters_mle

@@ -166,28 +166,35 @@ data = generate_dataset(
 - [ ] Extended SV models (Heston, etc.) - OPTIONAL
 
 ### Data
-- [ ] Synthetic data generator for basic SV
-- [ ] Data normalization utilities
-- [ ] Train/val/test split functionality
-- [ ] Data loading utilities
+- [x] Synthetic data generator for basic SV
+- [x] Data normalization utilities
+- [x] Train/val/test split functionality
+- [x] Data loading utilities
 - [ ] Real market data processing - OPTIONAL
 
 ### Neural Networks
-- [ ] LSTM estimator architecture
-- [ ] Training loop with PyTorch
-- [ ] Hyperparameter tuning
-- [ ] Model checkpointing and saving
+- [x] LSTM estimator architecture
+- [x] Training loop with PyTorch
+- [x] Full-scale training on 50k sequences
+- [x] Model checkpointing and saving
+- [ ] Hyperparameter tuning - OPTIONAL
 
 ### Classical Methods
-- [ ] Maximum Likelihood Estimation (MLE)
-- [ ] Particle filter implementation
+- [x] Maximum Likelihood Estimation (MLE)
+- [x] Particle filter implementation (for MLE)
 - [ ] MCMC (Bayesian) - OPTIONAL
 
 ### Evaluation
-- [ ] Evaluation metrics (MSE, MAE, bias)
-- [ ] Comparison framework
-- [ ] Visualization of results
-- [ ] Statistical tests (confidence intervals)
+- [x] Evaluation metrics (MSE, MAE, bias)
+- [x] Comparison framework
+- [x] Visualization of results
+- [ ] Statistical tests (confidence intervals) - OPTIONAL
+
+### Comparison
+- [x] MLE implementation
+- [x] Comparison script created
+- [ ] Full comparison run (NN vs MLE)
+- [ ] Results analysis and documentation
 
 ### Thesis Writing
 - [ ] Literature review chapter
@@ -277,10 +284,10 @@ data = generate_dataset(
 
 **MVP Requirements:**
 1. ✅ Basic SV model implemented and validated
-2. ⏳ Synthetic data generation (50k sequences)
-3. ⏳ Simple LSTM estimator trained
-4. ⏳ ONE classical benchmark (MLE preferred)
-5. ⏳ Comparison showing NN works (even if not better)
+2. ✅ Synthetic data generation (50k sequences)
+3. ✅ Simple LSTM estimator trained
+4. ✅ ONE classical benchmark (MLE implemented)
+5. ⏳ Comparison showing NN works (framework ready, need to run)
 6. ⏳ Complete written thesis
 
 **Everything else is BONUS.**
@@ -291,13 +298,13 @@ data = generate_dataset(
 
 ### Core Papers
 - Kim, Shephard & Chib (1998) - Stochastic Volatility
-- [Add papers as you find them]
+- Fičura, M., & Witzany, J. (2023). "Historical Calibration of SVJD Models with Deep Learning" IES Working Papers 36/2023. Charles University.
 
 ### Neural Network for Time Series
-- [Add relevant papers]
+- [Add relevant papers as found]
 
 ### Parameter Estimation
-- [Add relevant papers]
+- [Add relevant papers as found]
 
 ---
 
@@ -328,10 +335,10 @@ Copy this to `PROGRESS_LOG.md` each week:
 
 ## 🎯 Current Status
 
-**Phase:** Neural Network Implementation  
-**Previous Milestone:** ✅ Data Generation Complete  
-**Next Milestone:** LSTM Estimator  
-**Estimated Time to MVP:** 3-4 months  
+**Phase:** Comparison & Analysis  
+**Previous Milestone:** ✅ LSTM Training Complete  
+**Next Milestone:** Full Comparison (NN vs MLE)  
+**Estimated Time to MVP:** 2-3 months remaining  
 **Confidence Level:** High ✅
 
 **Completed:**
@@ -339,13 +346,16 @@ Copy this to `PROGRESS_LOG.md` each week:
 - ✅ Synthetic data generator
 - ✅ Full training dataset (70k sequences, 259 MB)
 - ✅ LSTM parameter estimator (architecture + training pipeline)
-- ✅ Evaluation framework
+- ✅ Full-scale training on 50k sequences (30 epochs)
+- ✅ Results analysis and visualizations
+- ✅ MLE implementation (particle filter-based)
+- ✅ Comparison framework
 
 **Ready for:**
-- Full-scale training on 50k sequences
-- Hyperparameter tuning
-- Classical benchmark implementation
-- Comparison and analysis
+- Full comparison run (NN vs MLE on test set)
+- Results documentation
+- Thesis writing (results chapter)
+- Final analysis and conclusions
 
 ---
 

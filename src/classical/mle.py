@@ -121,7 +121,7 @@ def estimate_parameters_mle(
     method: str = "L-BFGS-B",
     n_restarts: int = 3,
     seed: int | None = None
-) -> tuple[float, float, dict]:
+) -> tuple[float, float, dict[str, float | bool | int]]:
     """
     Estimate SV model parameters using Maximum Likelihood Estimation.
     
@@ -158,12 +158,12 @@ def estimate_parameters_mle(
         Estimated persistence parameter φ.
     sigma_v_est : float
         Estimated volatility-of-volatility parameter σ_v.
-    info : dict
+    info : dict[str, float | bool | int]
         Dictionary containing optimization information:
-        - 'log_likelihood': Final log-likelihood value
-        - 'success': Whether optimization converged
-        - 'n_iterations': Number of iterations
-        - 'optimization_time': Time taken for optimization
+        - 'log_likelihood': Final log-likelihood value (float)
+        - 'success': Whether optimization converged (bool)
+        - 'n_iterations': Number of iterations (int)
+        - 'optimization_time': Time taken for optimization (float)
     
     Examples
     --------

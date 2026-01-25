@@ -119,6 +119,64 @@
 
 ---
 
+## Week of January 23-25, 2026
+
+### Accomplished
+- ✅ Trained LSTM on full 50k dataset (30 epochs)
+  - Best validation loss: 0.002305
+  - Training time: ~45 minutes
+  - Model saved: `models/lstm_estimator_full.pt`
+- ✅ Comprehensive results analysis
+  - Test metrics: MSE (phi)=0.000983, MSE (sigma_v)=0.003430
+  - Created visualizations: scatter plots, error distributions, performance by range
+  - All results saved to `results/` directory
+- ✅ Implemented Maximum Likelihood Estimation (MLE) benchmark
+  - Particle filter-based likelihood approximation
+  - Numerical optimization using scipy.optimize
+  - Tested and verified on sample data
+- ✅ Created comparison framework
+  - Script to compare NN vs MLE on same test sequences
+  - Accuracy and speed comparison
+  - Visualization generation
+
+### Training Results
+- **Final Test Metrics:**
+  - MSE (phi): 0.000983 (excellent)
+  - MSE (sigma_v): 0.003430 (good)
+  - MAE (phi): 0.026505
+  - MAE (sigma_v): 0.047706
+  - Bias: Near zero (no systematic error)
+  - Total MSE: 0.002206
+
+### New Implementations
+- ✅ MLE implementation (`src/classical/mle.py`):
+  - `particle_filter_likelihood`: Approximates likelihood using particle filter
+  - `estimate_parameters_mle`: Main MLE estimation function
+  - Handles latent volatility through particle filtering
+  - Multiple optimization restarts for robustness
+- ✅ Comparison framework (`compare_methods.py`):
+  - Runs both NN and MLE on test sequences
+  - Compares accuracy (MSE, MAE, bias)
+  - Compares computation time
+  - Creates side-by-side visualizations
+
+### Next Week Goals
+- Run full comparison (NN vs MLE on test set)
+- Analyze comparison results
+- Document findings for thesis
+- Begin writing results chapter
+
+### Decisions Made
+- Using particle filter for MLE (standard approach for SV models)
+- Using 500 particles for MLE (balance between accuracy and speed)
+- Comparing on subset of test set (100 sequences) due to MLE computational cost
+- MLE uses multiple restarts to avoid local minima
+
+### Questions/Blockers
+- None currently
+
+---
+
 ## Future Weeks
 
 _To be updated weekly..._
