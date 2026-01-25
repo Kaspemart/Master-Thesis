@@ -91,8 +91,8 @@ with torch.no_grad():
     print(f"  Input shape: {sample_returns.shape}")
     print(f"  Output shape: {predictions.shape}")
     print(f"  Target shape: {sample_params.shape}")
-    print(f"  Sample prediction: φ={predictions[0, 0]:.4f}, σ_v={predictions[0, 1]:.4f}")
-    print(f"  True values: φ={sample_params[0, 0]:.4f}, σ_v={sample_params[0, 1]:.4f}")
+    print(f"  Sample prediction: phi={predictions[0, 0]:.4f}, sigma_v={predictions[0, 1]:.4f}")
+    print(f"  True values: phi={sample_params[0, 0]:.4f}, sigma_v={sample_params[0, 1]:.4f}")
 
 # Training model (short training for test)
 print("\n" + "=" * 80)

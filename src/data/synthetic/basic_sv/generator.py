@@ -155,7 +155,7 @@ class BasicSVDataGenerator:
         if T <= 0:
             raise ValueError(f"T must be positive, got {T}")
         
-        logger.info(f"Initialized BasicSVDataGenerator: phi∈{phi_range}, σ_v∈{sigma_v_range}, T={T}")
+        logger.info(f"Initialized BasicSVDataGenerator: phi in {phi_range}, sigma_v in {sigma_v_range}, T={T}")
     
 
     def sample_parameters(self, n: int) -> np.ndarray:
