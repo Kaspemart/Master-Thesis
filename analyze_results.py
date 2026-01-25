@@ -34,12 +34,12 @@ def analyze_training_results() -> None:
             metrics = json.load(f)
         
         print("\nTest Set Performance:")
-        print(f"  MSE (φ): {metrics['mse_phi']:.6f}")
-        print(f"  MSE (σ_v): {metrics['mse_sigma_v']:.6f}")
-        print(f"  MAE (φ): {metrics['mae_phi']:.6f}")
-        print(f"  MAE (σ_v): {metrics['mae_sigma_v']:.6f}")
-        print(f"  Bias (φ): {metrics['bias_phi']:.6f}")
-        print(f"  Bias (σ_v): {metrics['bias_sigma_v']:.6f}")
+        print(f"  MSE (phi): {metrics['mse_phi']:.6f}")
+        print(f"  MSE (sigma_v): {metrics['mse_sigma_v']:.6f}")
+        print(f"  MAE (phi): {metrics['mae_phi']:.6f}")
+        print(f"  MAE (sigma_v): {metrics['mae_sigma_v']:.6f}")
+        print(f"  Bias (phi): {metrics['bias_phi']:.6f}")
+        print(f"  Bias (sigma_v): {metrics['bias_sigma_v']:.6f}")
         print(f"  Total MSE: {metrics['mse_total']:.6f}")
     else:
         print("Warning: Test metrics not found. Run evaluation first.")
@@ -93,9 +93,9 @@ def analyze_training_results() -> None:
     axes[0].plot([targets[:, 0].min(), targets[:, 0].max()], 
                  [targets[:, 0].min(), targets[:, 0].max()], 
                  'r--', linewidth=2, label='Perfect prediction')
-    axes[0].set_xlabel('True φ', fontsize=12)
-    axes[0].set_ylabel('Predicted φ', fontsize=12)
-    axes[0].set_title('Predicted vs True φ', fontsize=14, fontweight='bold')
+    axes[0].set_xlabel('True phi', fontsize=12)
+    axes[0].set_ylabel('Predicted phi', fontsize=12)
+    axes[0].set_title('Predicted vs True phi', fontsize=14, fontweight='bold')
     axes[0].legend()
     axes[0].grid(True, alpha=0.3)
     
@@ -104,9 +104,9 @@ def analyze_training_results() -> None:
     axes[1].plot([targets[:, 1].min(), targets[:, 1].max()], 
                  [targets[:, 1].min(), targets[:, 1].max()], 
                  'r--', linewidth=2, label='Perfect prediction')
-    axes[1].set_xlabel('True σ_v', fontsize=12)
-    axes[1].set_ylabel('Predicted σ_v', fontsize=12)
-    axes[1].set_title('Predicted vs True σ_v', fontsize=14, fontweight='bold')
+    axes[1].set_xlabel('True sigma_v', fontsize=12)
+    axes[1].set_ylabel('Predicted sigma_v', fontsize=12)
+    axes[1].set_title('Predicted vs True sigma_v', fontsize=14, fontweight='bold')
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
     
@@ -128,7 +128,7 @@ def analyze_training_results() -> None:
                     label=f'Mean: {errors_phi.mean():.4f}')
     axes[0].set_xlabel('Error (Predicted - True)', fontsize=12)
     axes[0].set_ylabel('Frequency', fontsize=12)
-    axes[0].set_title('Error Distribution for φ', fontsize=14, fontweight='bold')
+    axes[0].set_title('Error Distribution for phi', fontsize=14, fontweight='bold')
     axes[0].legend()
     axes[0].grid(True, alpha=0.3)
     
@@ -138,7 +138,7 @@ def analyze_training_results() -> None:
                     label=f'Mean: {errors_sigma_v.mean():.4f}')
     axes[1].set_xlabel('Error (Predicted - True)', fontsize=12)
     axes[1].set_ylabel('Frequency', fontsize=12)
-    axes[1].set_title('Error Distribution for σ_v', fontsize=14, fontweight='bold')
+    axes[1].set_title('Error Distribution for sigma_v', fontsize=14, fontweight='bold')
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
     
@@ -179,17 +179,17 @@ def analyze_training_results() -> None:
     
     phi_labels = [f"{phi_bins[i]:.2f}-{phi_bins[i+1]:.2f}" for i in range(len(phi_bins)-1)]
     axes[0].bar(phi_labels, phi_mae_by_range, alpha=0.7, edgecolor='black')
-    axes[0].set_xlabel('True φ Range', fontsize=12)
+    axes[0].set_xlabel('True phi Range', fontsize=12)
     axes[0].set_ylabel('Mean Absolute Error', fontsize=12)
-    axes[0].set_title('MAE by φ Range', fontsize=14, fontweight='bold')
+    axes[0].set_title('MAE by phi Range', fontsize=14, fontweight='bold')
     axes[0].tick_params(axis='x', rotation=45)
     axes[0].grid(True, alpha=0.3, axis='y')
     
     sigma_v_labels = [f"{sigma_v_bins[i]:.2f}-{sigma_v_bins[i+1]:.2f}" for i in range(len(sigma_v_bins)-1)]
     axes[1].bar(sigma_v_labels, sigma_v_mae_by_range, alpha=0.7, edgecolor='black', color='orange')
-    axes[1].set_xlabel('True σ_v Range', fontsize=12)
+    axes[1].set_xlabel('True sigma_v Range', fontsize=12)
     axes[1].set_ylabel('Mean Absolute Error', fontsize=12)
-    axes[1].set_title('MAE by σ_v Range', fontsize=14, fontweight='bold')
+    axes[1].set_title('MAE by sigma_v Range', fontsize=14, fontweight='bold')
     axes[1].tick_params(axis='x', rotation=45)
     axes[1].grid(True, alpha=0.3, axis='y')
     
